@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ .sticky-offset {
+  top: 64px;
+}

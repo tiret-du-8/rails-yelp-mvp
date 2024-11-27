@@ -5,6 +5,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @review = Review.new()
   end
 
   def new
@@ -14,6 +15,11 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.create(restaurant_params)
     redirect_to restaurant_path(@restaurant)
+  end
+
+  def top
+    # récupérer tout les restaurants qui ont 5 étoiles
+    @restaurants = Restaurant.where(name: "Jack's Burger")
   end
 
   private

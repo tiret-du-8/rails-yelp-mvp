@@ -1,11 +1,32 @@
-<h1><%= @restaurant.name %></h1>
-<p><%= @restaurant.address %></p>
-<p><%= @restaurant.category %></p>
-<ul>
-  <% @restaurant.reviews.each do |review| %>
-    <li><%= review.rating %>/5 - <%= review.content %></li>
-  <% end %>
-</ul>
+  <div class="row d-flex justify-content-start align-content-between">
 
-<button><%= link_to "Add a new review", new_restaurant_review_path(@restaurant) %></button>
-<button><%= link_to "Back to all restaurants", restaurants_path %></button>
+    <div class="col-4">
+      <div class="card m-2 sticky-top sticky-offset">
+        <img class="card-img-top" src="https://picsum.photos/300/100" alt="">
+        <div class="card-body">
+          <h5 class="card-title"><%= @restaurant.name %></h5>
+          <div class="my-1"><span class="alert alert-secondary p-1"><%= @restaurant.category %></span></div>
+          <p class="card-text"><%= @restaurant.address %></p>
+          <div>
+            <%= simple_form_for [@restaurant, @review] do |f| %>
+              <%= f.input :rating %>
+              <%= f.input :content %>
+              <%= f.submit "Add a review" %>
+            <% end %>
+          </div>
+          <%# <div><a href="<%= new_restaurant_review_path(@restaurant) " class="btn btn-primary">Add a review</a></div> %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-8">
+      <% @restaurant.reviews.each do |review| %>
+        <div class="card m-2">
+          <div class="card-body">
+            <div class="my-1"><span class="alert alert-secondary p-1"><%= review.rating %>/5</span></div>
+            <p class="card-text"><%= review.content %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>

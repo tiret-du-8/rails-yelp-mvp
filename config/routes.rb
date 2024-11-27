@@ -14,5 +14,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
     # GET restaurants/restaurant_id/reviews/new
     # POST restaurants/ restaurant_id/reviews/
+    collection do
+      get :top # restaurants/top
+    end
   end
 end
